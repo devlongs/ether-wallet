@@ -13,16 +13,18 @@ contract EtherWallet {
         owner = payable(msg.sender);
     }
 
-    receive() external payable {}
+    receive() external payable {
+        deposit();
+    }
 
-    function deposit() external payable {
+    function deposit() public payable {
         depositors[msg.sender] += msg.value;
         depositorsAddresses.push(msg.sender);
     }
 
     function withdraw(uint _amount) public {
         require(msg.sender == owner, "You are not the owner");
-        (bool sent, ) = msg.sender.call{value: _amount}("");
+        (bool sent, ) = msg.sender.call{value: _amount}(""); // a better way to transfer money
         require(sent, "Failed to send ether");
     }
 }
