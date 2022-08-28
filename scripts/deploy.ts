@@ -6,7 +6,7 @@ async function main() {
 
   await etherWallet.deployed();
 
-  console.log(`EtherWallet is deployed to ${etherWallet.address}`);
+  console.log(`EtherWallet is deployed to ${etherWallet.address}`); //0x9E34ae907dAbfAa86eAD074CA04FfAe059940Af8
 }
 
 // We recommend this pattern to be able to use async/await everywhere
