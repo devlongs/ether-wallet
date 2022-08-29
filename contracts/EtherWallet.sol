@@ -9,6 +9,8 @@ contract EtherWallet {
     mapping(address => uint) public depositors;
     address[] public depositorsAddresses;
 
+    event Withdraw(uint amount);
+
     constructor() {
         owner = payable(msg.sender);
     }
@@ -26,5 +28,6 @@ contract EtherWallet {
         require(msg.sender == owner, "You are not the owner");
         (bool sent, ) = msg.sender.call{value: _amount}(""); // a better way to transfer money
         require(sent, "Failed to send ether");
+        emit Withdraw(_amount);
     }
 }
